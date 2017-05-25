@@ -31,9 +31,9 @@
 
 		<div id="nav" class="clearfix">
 			<ul>
-			  <li><a href="acre.html">ÅKERS STYCKEBRUK</a></li>
-			  <li><a class="current" href="folketshus.html">AKTIVITET FOLKETS HUS</a></li>
+			  <li><a href="aker.html">ÅKER</a></>
 			  <li><a href="tourism.html">VILDMARKSTURISM</a></>
+			  <li><a href="register-event/">MER AKTIVITET</a></li>
 			</ul>
 		</div>
 	</div>
@@ -56,7 +56,9 @@
 		  <div id="main" class="left">
 		    {% for event in events %}
 		    <div id="content" class="clearfix shadow">
-		      <h2>{{ event.title }} {{ event.start_date }}</h2>
+
+		      <h2> {{ event.start_date }} </h2>
+		      <h3> {{ event.title }} </h3>
 		      <p> 
 			{% with event.location.all|first as loc %}
 			Var: {{ loc }}
@@ -76,7 +78,7 @@
 		<div id="trio1">
 			<div class="inner">
 				<h3><a href="register-event/">Lägg in ditt eget event</a></h3>
-				<p>Här kan du lägga in ditt eget event från facebook. Tänk på att det ditt event måste vara publikt.</p>
+				<p>Här kan du lägga in ditt eget event från Facebook som sen visas här på sidan.</p>
 			</div>
 		</div>
 
@@ -90,7 +92,7 @@
 		<div id="trio3">
 			<div class="inner">
 				<h3>Engagera dig i Åker</h3>
-				<p>Skicka ett mail till porten@example.com, besök oss i folkets hus eller ring.</p>
+				<p>Vi vill ju såklart att du ska vara med och driva PORTEN! Prata med någon i styrelsen i så fall. Men det bästa är att delta i någon redan pågående aktivtet eller skapa en egen som du delar här på PORTEN. </p>
 			</div>
 		</div>
 	</div>
