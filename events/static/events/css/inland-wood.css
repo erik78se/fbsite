@@ -89,8 +89,14 @@ img.alignleft,img.aligncenter,img.alignright{background:#fff;padding:4px;margin-
     right: 0px;
     float:right;
     width:200px;
-#    height:100px;
 }
+.imgkanot {
+    position:relative;
+    right: 0px;
+    float:right;
+    width:65%;
+}
+
 
 /* Additional classes */
 .shadow{background:url(images/shadow.png) top center no-repeat;}

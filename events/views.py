@@ -85,7 +85,7 @@ def register_facebook_event(request):
         
     # Not a POST call
     else:
-        print("Not a POST")
+
         form = FaceBookEventForm()
         
     return render(request, 'register_event.html', {'form': form})
@@ -105,7 +105,6 @@ def get_facebook_event(fbevent_id):
     return event
 
 def get_picture_for_event(fbevent_id):
-    print("get pic")
 
     app_token = FacebookAuthorization.get_app_access_token()
 
