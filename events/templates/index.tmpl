@@ -4,13 +4,13 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="description" content="Porten till vildmarken" />
-	<meta name="keywords" content="your,keywords,goes,here" />
+	<meta name="keywords" content="turism,fritid,sport,friluftsliv,natur,jakt,fiske,djur" />
 	<meta name="author" content="Erik Lonroth" />
 	<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz|Droid+Sans' rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" type="text/css" media="all" href="{% static '/events/css/inland-wood.css' %}"/>
 	<script type="text/javascript" src="{% static '/events/js/jquery-1.7.1.min.js' %}"></script>
 	<script type="text/javascript" src="{% static '/events/js/jquery.nivo.slider.js' %}"></script>
-	<title>The Inland Wood CSS template</title>
+	<title>PORTEN till vildmarken</title>
 </head>
 
 <body>
@@ -31,9 +31,9 @@
 
 		<div id="nav" class="clearfix">
 			<ul>
-				<li><a class="current" href="folketshus.html">Aktiviteter i Folkets hus</a></li>
-				<li><a href="acre.html">Åkers styckebruk</a></li>
-				<li><a href="tourism.html">Turista i Vildmarken</a></>
+			  <li><a href="acre.html">ÅKERS STYCKEBRUK</a></li>
+			  <li><a class="current" href="folketshus.html">AKTIVITET FOLKETS HUS</a></li>
+			  <li><a href="tourism.html">VILDMARKSTURISM</a></>
 			</ul>
 		</div>
 	</div>
@@ -46,46 +46,57 @@
 			<img src="{% static '/events/images/slider0.jpg' %}" alt="" />
 			<img src="{% static '/events/images/slider4.jpg' %}" alt="" />
 		</div>
-	</div>
-	{% for event in events %}
-	<div id="content" class="clearfix shadow">
-		<h2>{{ event.title }} {{ event.start_date }}</h2>
-		<p> 
-		  {% with event.location.all|first as loc %}
-		  {{ loc }}
-		  {% endwith %}
-		</p>
-		<div>
-		  <img src="{{ event.facebookevent.facebook_cover_image_url }}" class="floatimg" alt=""/>
-		  <p> {{ event.description }} </p>
+		<div id="content" class="clearfix shadow">
+		  <div id="sidebar" class="right">
+		    <div class="inner">
+		      <h2>#åker tweets</h2>
+		      <p>Här kommer twitterfeed</p>
+		    </div>
+		  </div>
+		  <div id="main" class="left">
+		    {% for event in events %}
+		    <div id="content" class="clearfix shadow">
+		      <h2>{{ event.title }} {{ event.start_date }}</h2>
+		      <p> 
+			{% with event.location.all|first as loc %}
+			Var: {{ loc }}
+			{% endwith %}
+		      </p>
+		      <div>
+			<img src="{{ event.facebookevent.facebook_cover_image_url }}" class="floatimg" alt=""/>
+			<p> {{ event.description }} </p>
+		      </div>
+		    </div>
+		    {% endfor %}
+		  </div>
 		</div>
 	</div>
-	{% endfor %}
+	
 	<div id="extended" class="clearfix shadow">
 		<div id="trio1">
 			<div class="inner">
-				<h3>Standards-compliant code</h3>
-				<p>The Inland Wood template is written with standards-compliant HTML5 and CSS3.</p>
+				<h3><a href="register-event/">Lägg in ditt eget event</a></h3>
+				<p>Här kan du lägga in ditt eget event från facebook. Tänk på att det ditt event måste vara publikt.</p>
 			</div>
 		</div>
 
 		<div id="trio2">
 			<div class="inner">
-				<h3>Slider included</h3>
-				<p>The slider is made with a jQuery plugin called <a href="http://nivo.dev7studios.com">Nivo Slider</a>, created by Gilbert Pellegrom of dev7studios and released under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT Licence</a>. The sample photos are taken by Thomas Wallström and released under a CC-BY license.</p>
+				<h3>Vision Åker</h3>
+				<p> Vildmark, Natur, Livslust, Frihet, Hälsa, Glädje, Gemenskap.</p>
 			</div>
 		</div>
 
 		<div id="trio3">
 			<div class="inner">
-				<h3>Multiple layout options</h3>
-				<p>Single-column, two columns with left or right sidebars, three columns - or a combination of any two layout options.</p>
+				<h3>Engagera dig i Åker</h3>
+				<p>Skicka ett mail till porten@example.com, besök oss i folkets hus eller ring.</p>
 			</div>
 		</div>
 	</div>
 
 	<div id="footer" class="shadow">
-		<p>&copy; 2012 Your Name | <a href="http://andreasviklund.com/templates/inland-wood/">Template design</a> by <a href="http://andreasviklund.com/">andreasviklund.com</a><br />Best hosted at <a href="https://www.svenskadomaner.se/?ref=mall&amp;ling=en" title="Svenska Domäner AB">www.svenskadomaner.se</a></p>
+		<p>&copy; 2017 Erik Lönroth - CC-BY | <a href="http://andreasviklund.com/templates/inland-wood/">Template design</a> originally by <a href="http://andreasviklund.com/">andreasviklund.com</a><br /> </p>
 	</div>
 </div>
 
