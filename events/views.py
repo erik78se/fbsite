@@ -30,6 +30,11 @@ def index(request):
 
     return render_to_response('index.tmpl', {'events': events, 'fbevents': facebook_events })
 
+def tourism(request):
+    return render_to_response('tourism.html')
+
+def aker(request):
+    return render_to_response('aker.html')
 
 def register_facebook_event(request):
     

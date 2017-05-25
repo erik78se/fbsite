@@ -96,6 +96,12 @@ img.alignleft,img.aligncenter,img.alignright{background:#fff;padding:4px;margin-
     float:right;
     width:65%;
 }
+.imgtourism {
+    position:relative;
+    right: 0px;
+    float:right;
+    width:65%;
+}
 
 
 /* Additional classes */
