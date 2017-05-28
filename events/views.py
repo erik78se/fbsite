@@ -55,11 +55,16 @@ def register_facebook_event(request):
            
                 event_pic = get_picture_for_event( eid )
                 
+                print(event_dict)
+
             except(Exception):
                 
                 return HttpResponse("Could not get the event. Is it private?")
-            
-                
+
+            # Handle events without ending time
+            if not 'end_time' in event_dict: 
+                event_dict['end_time'] = event_dict['start_time']
+
             he = HappeningEvent(title=event_dict['name'], 
                                 start_date=event_dict['start_time'],
                                 end_date=event_dict['end_time'],
