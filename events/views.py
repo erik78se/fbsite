@@ -51,8 +51,10 @@ def register_facebook_event(request):
 
             try:
                 
+                # Get Facebook event from the ID
                 event_dict = get_facebook_event( eid )
            
+                # Get the Facebook picture from the event ID
                 event_pic = get_picture_for_event( eid )
                 
                 print(event_dict)
@@ -61,7 +63,7 @@ def register_facebook_event(request):
                 
                 return HttpResponse("Could not get the event. Is it private?")
 
-            # Handle events without ending time
+            # Handle events without ending time.
             if not 'end_time' in event_dict: 
                 event_dict['end_time'] = event_dict['start_time']
 
@@ -73,24 +75,35 @@ def register_facebook_event(request):
                                 )
             he.save()
 
-            if 'place' in event_dict:
-                lo = event_dict.get('place')
-                # h = HappeningLocation.objects.get(name=lo.name)
-                
+            place_name = None
+            city = None
+            street = None
+            address_line_1 = ""
+            address_line_2 = ""
 
+            if 'place' in event_dict:
+                place_name = event_dict.get('place')['name']
+            else:
+                raise
+      
+            if 'city' in event_dict.get('place', {}).get('location', {}):
+                city = event_dict.get('place', {}).get('location', {}).get('city')
 
             if 'street' in event_dict.get('place', {}).get('location', {}):
-                st = event_dict.get('place', {}).get('location', {}).get('street')
-                print(st)
+                street = event_dict.get('place', {}).get('location', {}).get('street')
+                address_line_1=event_dict['place']['location']['city']
+                address_line_2=street
 
-                # if street in event_dict['place']['location']['street']:
-                l = HappeningLocation.objects.create(name=event_dict['place']['location']['street'],
-                                                     address_line_1=event_dict['place']['location']['street'])
-                he.location.add(l)
+                
+            l = HappeningLocation.objects.create(name=place_name,
+                                                     address_line_1=address_line_1,
+                                                     address_line_2=address_line_2)
 
-            # he.save()
+
+            # Att the location to the happening event.
+            he.location.add(l)
             
-            # Create the record of the event
+            # Create the record of the event with the image url
             FacebookEvent.objects.create( event=he, facebook_event_id=eid , facebook_cover_image_url=event_pic['cover']['source'])
         
     # Not a POST call
