@@ -1,4 +1,4 @@
-Django==1.10
+Django==1.11.1
 Pillow==4.1.1
 python_dateutil==2.6.0
 django_statsd==2.1.1
