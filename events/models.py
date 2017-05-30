@@ -17,7 +17,7 @@ from django.core.validators import URLValidator
 #
 class FacebookEvent(models.Model):
     event = models.OneToOneField(Event, on_delete=models.CASCADE)
-    facebook_event_id = models.IntegerField()
+    facebook_event_id = models.IntegerField(unique=True)
     facebook_cover_image_url = models.TextField(validators=[URLValidator()], default='http://image.png')
 
     def __str__(self):
