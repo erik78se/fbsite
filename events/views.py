@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from .forms import FaceBookEventForm
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader, Context
 from django.shortcuts import render_to_response
@@ -14,21 +15,23 @@ from happenings.models import Location as HappeningLocation
 from django.contrib.auth.models import User
 from django.db import IntegrityError, transaction
 
+from django.contrib.auth.models import User
+
+import logging
+
+
 # Facebook API access tokens
 # https://developers.facebook.com/docs/facebook-login/access-tokens/#apptokens
 
 # GOOOD example: https://github.com/tschellenbach/Django-facebook/tree/master/facebook_example/facebook_example
 
+logger = logging.getLogger(__name__)
+
 
 def index(request):
     events =  HappeningEvent.objects.all()
-    facebook_events = FacebookEvent.objects.all()
-    # [u'description', u'start_time', u'place', u'end_time', u'id', u'name']
-    
-    for i in events:
-        print(i.facebookevent.facebook_cover_image_url)
-
-    return render_to_response('index.tmpl', {'events': events, 'fbevents': facebook_events })
+    facebook_events = FacebookEvent.objects.all()    
+    return render_to_response('index.html', {'events': events, 'fbevents': facebook_events })
 
 def tourism(request):
     return render_to_response('tourism.html')
@@ -37,6 +40,9 @@ def aker(request):
     return render_to_response('aker.html')
 
 def register_facebook_event(request):
+    logger.debug("register_facebook_event called")
+    eid = None
+    success = False
     try:
         with transaction.atomic():
             if request.method == 'POST':
@@ -56,7 +62,7 @@ def register_facebook_event(request):
                     # Get the Facebook picture from the event ID
                     event_pic = get_picture_for_event( eid )
                 
-                    print(event_dict)
+                    logger.debug(event_dict)
                 else:
                     return render(request, 'error.html', { 'message': "Could not get the event. Is it private?" })
 
@@ -64,12 +70,16 @@ def register_facebook_event(request):
                 if not 'end_time' in event_dict: 
                     event_dict['end_time'] = event_dict['start_time']
 
+                logger.debug("Creating happening")                    
+
                 he = HappeningEvent(title=event_dict['name'], 
                                     start_date=event_dict['start_time'],
                                     end_date=event_dict['end_time'],
                                     description=event_dict['description'],
                                     created_by=User.objects.get(pk=1), )
-                                    
+
+                logger.debug("Saving happening")                    
+
                 he.save()
 
                 place_name = None
@@ -103,18 +113,27 @@ def register_facebook_event(request):
                 # Create the record of the event with the image url
                
                 FacebookEvent.objects.create( event=he, facebook_event_id=eid , facebook_cover_image_url=event_pic['cover']['source'])
-
-        
-            #Not a POST call
+                
+                success = True
+            #Not a POST call, present the form to be filled in
             else:
                 form = FaceBookEventForm()
+
+    # HANDLE FAILURES
     except IntegrityError as ie:
         return render(request, "error.html", {"message":  "Eventet redan inlagt."})
+    except User.DoesNotExist:
+        logger.error("User missing, is admin registered in django?")
     except Exception as e:
+        logger.error("When trying to add facebook event")
         return render(request, "error.html", {"message":  str(e)})
-
-    return render(request, 'register_event.html', {'form': form})
-
+# SUCCESS
+    if success:
+        logger.info("Added facebook event: {}".format(str(eid)))
+        return redirect('home')
+    else:
+        logger.info("Failed to add facebook event from form")
+        return render(request, 'register_event.html', {'form': form})
 
 def get_facebook_event(fbevent_id):
     """ 
