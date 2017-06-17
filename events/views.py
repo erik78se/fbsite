@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 
 
 def index(request):
-    now = datetime.datetime.today()
+    now = datetime.datetime.now().date()
     # events =  HappeningEvent.objects.all()
     events = HappeningEvent.objects.filter(start_date__gte=now)
     facebook_events = FacebookEvent.objects.all()    
