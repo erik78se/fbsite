@@ -34,9 +34,10 @@ logger = logging.getLogger(__name__)
 
 def index(request):
     now = datetime.datetime.now().date()
-    # events =  HappeningEvent.objects.all()
-    events = HappeningEvent.objects.filter(start_date__gte=now)
-    facebook_events = FacebookEvent.objects.all()    
+    # Show only events from today and in the future
+    events = HappeningEvent.objects.filter(start_date__gte=now).order_by('start_date')
+    #TODO: Only pass on the events we have from the filter
+    facebook_events = FacebookEvent.objects.all()
     return render_to_response('index.html', {'events': events, 'fbevents': facebook_events })
 
 def tourism(request):
