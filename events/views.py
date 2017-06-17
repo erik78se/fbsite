@@ -15,7 +15,11 @@ from happenings.models import Location as HappeningLocation
 from django.contrib.auth.models import User
 from django.db import IntegrityError, transaction
 
+import datetime
+
 from django.contrib.auth.models import User
+
+
 
 import logging
 
@@ -29,7 +33,9 @@ logger = logging.getLogger(__name__)
 
 
 def index(request):
-    events =  HappeningEvent.objects.all()
+    now = datetime.datetime.today()
+    # events =  HappeningEvent.objects.all()
+    events = HappeningEvent.objects.filter(start_date__gte=now)
     facebook_events = FacebookEvent.objects.all()    
     return render_to_response('index.html', {'events': events, 'fbevents': facebook_events })
 
@@ -134,7 +140,6 @@ def register_facebook_event(request):
     else:
         logger.info("Failed to add facebook event from form")
         return render(request, 'register_event.html', {'form': form})
-
 def get_facebook_event(fbevent_id):
     """ 
     Gets facebook events from facebook.
