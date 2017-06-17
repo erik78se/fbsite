@@ -1,28 +1,13 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="description" content="Porten till vildmarken" />
-	<meta name="keywords" content="turism,fritid,sport,friluftsliv,natur,jakt,fiske,djur" />
-	<meta name="author" content="Erik Lonroth" />
-	<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz|Droid+Sans' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" type="text/css" media="all" href="{% static '/events/css/inland-wood.css' %}"/>
-	<script type="text/javascript" src="{% static '/events/js/jquery-1.7.1.min.js' %}"></script>
-	<script type="text/javascript" src="{% static '/events/js/jquery.nivo.slider.js' %}"></script>
-	<title>PORTEN till vildmarken</title>
-</head>
+
+{% include 'default-head.html' %}
 
 <body>
   <div id="wrapper960" class="clearfix">
-    <div id="toplinks">
-      <ul class="toplinks_links">
-	<li><a href="#">Föreningen</a></li>
-	<li><a href="#">Medlemmar</a></li>
-	<li><a href="#">Syfte</a></li>
-	<li><a href="#">Facebook</a></li>
-      </ul>
-    </div>
+    <!-- TOPLINKS -->
+    {% include 'toplinks.html' %}
     
     <div id="header" class="clearfix shadow">
       <div id="sitetitle" class="clearfix">
@@ -31,7 +16,7 @@
       
       <div id="nav" class="clearfix">
 	<ul>
-	  <li><a href="/">TILLBAKA TILL PORTEN</a></li>
+	  <li><a href="/">TILLBAKA</a></li>
 	</ul>
       </div>
     </div>
@@ -39,10 +24,12 @@
       <div id="sidebar" class="left">
 	<div class="inner">
 	  <h2>Såhär gör du</h2>
-	  <p>Här lägger du upp egna aktiviteter som du vill ska visas på PORTEN till vildmarken.</p>
+	  <p>Här lägger du upp egna aktiviteter som du vill ska visas på den här sidan.</p>
 	  <p>Eventen hämtas automatiskt från Facebook genom du att klistrar in eventets "id" från Facebook i rutan här brevid. Kopiera id:t från länken till ditt event på Facebook. Id:t är en sifferkobination som ser ut ungefär såhär: <i>123123123123123</i></p>
 	    <p>Tänk på att andra ska kunna vara med på ditt event och att det har en anknytning till Åker. </p>
-	    <p>Principen är att alla events är fantastiska och godkända, men de event som inte är förenliga med PORTEN:s värdegrunder och principer tar vi bort. </p> 
+	    <p>Principen är att alla event blir godkända som håller sig till två viktiga principer: </p>
+	    <p>1. Det inkluderar och välkomnar alla.</p> 
+	    <p>2. Det är inte reklam.</p>
 	</div>
       </div>
     

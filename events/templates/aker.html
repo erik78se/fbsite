@@ -1,29 +1,12 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="description" content="Porten till vildmarken" />
-	<meta name="keywords" content="turism,fritid,sport,friluftsliv,natur,jakt,fiske,djur" />
-	<meta name="author" content="Erik Lonroth" />
-	<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz|Droid+Sans' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" type="text/css" media="all" href="{% static '/events/css/inland-wood.css' %}"/>
-	<script type="text/javascript" src="{% static '/events/js/jquery-1.7.1.min.js' %}"></script>
-	<script type="text/javascript" src="{% static '/events/js/jquery.nivo.slider.js' %}"></script>
-	<title>PORTEN till vildmarken</title>
-</head>
-
+{% include 'default-head.html' %}
 <body>
   <div id="wrapper960" class="clearfix">
-    <div id="toplinks">
-      <ul class="toplinks_links">
-	<li><a href="#">Föreningen</a></li>
-	<li><a href="#">Medlemmar</a></li>
-	<li><a href="#">Syfte</a></li>
-	<li><a href="#">Facebook</a></li>
-      </ul>
-    </div>
-    
+    <!-- TOPLINKS -->
+    {% include 'toplinks.html' %}
+
     <div id="header" class="clearfix shadow">
       <div id="sitetitle" class="clearfix">
 	<h1><a href="#">Åker</a></h1>
@@ -31,17 +14,17 @@
       
       <div id="nav" class="clearfix">
 	<ul>
-	  <li><a href="/">TILLBAKA TILL PORTEN</a></li>
+	  <li><a href="/">TILLBAKA</a></li>
 	</ul>
       </div>
     </div>
     <div id="content" class="clearfix shadow">
       <div id="sidebar" class="left">
 	<div class="inner">
-	  <h2>Porten till vildmarken</h2>
-	  <p> Åker ligger i Södermanland inbäddat bland naturskogar och sjöar. Som turist här i Åker upplever du den Svenska naturen som den beskrivs bara i sagorna. </p>
-	  <p> Vårt privilegie är att kunna njuta av denna otroliga natur och vildmark, men även vårt ansvar är att vårda den. Tänk på att inte skräpa ner, ta med dig dina sopor hem och hjälp oss förvalta änglamarken till de som kommer efter oss. Välkommen att njuta hos oss!
-	  <p> På denna sida kommer vi samla information om hur du gör för att uppleva vildmarken.</p>
+	  <h2>Här börjar vildmarken</h2>
+	  <p> Åker ligger i Södermanland inbäddat bland naturskogar och sjöar. Här lever den Svenska naturen precis som den beskrivs i sagorna. </p>
+	  <p> Vårt privilegium är att kunna njuta av denna otroliga natur och vildmark, men även ansvaret för att vårda den. Tänk på att inte skräpa ner, ta med dig dina sopor hem och hjälp till att förvalta änglamarken till de som kommer efter oss. Välkommen att njuta av livet här hos oss!
+	  <p> På denna sida försöker vi samla delar av den information om hur du gör för att uppleva vildmarken. Men resten är för dig att upptäcka här i vår natur! </p>
 	</div>
       </div>
 	<img class="imgtourism" src="{% static '/events/images/tourism1.jpg' %}" />

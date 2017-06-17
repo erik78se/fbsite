@@ -1,32 +1,17 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="description" content="Porten till vildmarken" />
-	<meta name="keywords" content="turism,fritid,sport,friluftsliv,natur,jakt,fiske,djur" />
-	<meta name="author" content="Erik Lonroth" />
-	<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz|Droid+Sans' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" type="text/css" media="all" href="{% static '/events/css/inland-wood.css' %}"/>
-	<script type="text/javascript" src="{% static '/events/js/jquery-1.7.1.min.js' %}"></script>
-	<script type="text/javascript" src="{% static '/events/js/jquery.nivo.slider.js' %}"></script>
-	<title>PORTEN till vildmarken</title>
-</head>
+
+{% include 'default-head.html' %}
 
 <body>
-<div id="wrapper960" class="clearfix">
-	<div id="toplinks">
-		<ul class="toplinks_links">
-			<li><a href="#">Föreningen</a></li>
-			<li><a href="#">Medlemmar</a></li>
-			<li><a href="#">Syfte</a></li>
-			<li><a href="#">Facebook</a></li>
-		</ul>
-	</div>
+  <div id="wrapper960" class="clearfix">
+    <!-- TOPLINKS -->
+    {% include 'toplinks.html' %}
 
 	<div id="header" class="clearfix shadow">
 		<div id="sitetitle" class="clearfix">
-			<h1><a href="#">PORTEN till vildmarken</a></h1>
+			<h1><a href="#">Det händer i Åker Styckebruk</a></h1>
 		</div>
 
 		<div id="nav" class="clearfix">
